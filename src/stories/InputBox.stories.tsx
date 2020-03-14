@@ -6,5 +6,27 @@ export default {
 };
 
 export const Basic = () => (
-  <InputBox name="Запрос" onChange={value => console.log(value)} />
+  <InputBox
+    name="Запрос"
+    status="idle"
+    onChange={value => console.log(value)}
+  />
+);
+
+export const Succes = () => (
+  <InputBox
+    name="Запрос"
+    status="success"
+    statusText="Запрос выполнен успешно"
+    onChange={value => console.log(value)}
+  />
+);
+
+export const Error = () => (
+  <InputBox
+    name="Запрос"
+    status="error"
+    statusText="Запрос не выполнен"
+    onChange={value => console.log(value)}
+  />
 );
