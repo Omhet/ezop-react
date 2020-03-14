@@ -5,4 +5,6 @@ export default {
   title: 'InputBox'
 };
 
-export const Basic = () => <InputBox name="Запрос" />;
+export const Basic = () => (
+  <InputBox name="Запрос" onChange={value => console.log(value)} />
+);
