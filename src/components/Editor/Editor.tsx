@@ -16,6 +16,7 @@ const Editor: FC<Props> = ({ onChange }) => {
       theme="github"
       onChange={onChange}
       name="UNIQUE_ID_OF_DIV"
+      fontSize={16}
       editorProps={{ $blockScrolling: true }}
       width="100%"
       height="100%"
