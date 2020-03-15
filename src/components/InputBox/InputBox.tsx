@@ -5,8 +5,7 @@ import ExpandIcon from '../../icons/Expand.svg';
 import styles from './style.scss';
 import Editor from '../Editor/Editor';
 import Button from '../Button/Button';
-
-type ExecutionStatus = 'success' | 'error' | 'idle';
+import { ExecutionStatus } from '../../types';
 
 interface Props {
   name: string;

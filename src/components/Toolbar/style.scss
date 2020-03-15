@@ -1,16 +1,16 @@
 .main {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  width: 60px;
   height: 100%;
-  background-color: $mainBack
+  background-color: $mainBack;
+  padding-bottom: 24px;
 }
 
 .header {
   display: flex;
   align-items: center;
-  padding-left: 40px;
-  padding-right: 8px;
   width: 100%;
   height: 36px;
 
@@ -25,19 +25,17 @@
   }
 }
 
-.name {
-  color: $auxColor;
-  font-weight: bold;
-}
-
-.rightBlock {
+.buttons {
   display: flex;
-  align-items: center;
-  margin-left: auto;
-  color: $auxColor;
-  font-weight: bold;
+  flex-direction: column;
+
+  & > * {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
 }
 
-.expandIcon {
-  margin-left: 16px;
+.mainButton {
+  margin-top: auto;
 }
