@@ -4,6 +4,7 @@ import ExpandIcon from '../../icons/Expand.svg';
 
 import styles from './style.scss';
 import Editor from '../Editor/Editor';
+import Button from '../Button/Button';
 
 type ExecutionStatus = 'success' | 'error' | 'idle';
 
@@ -12,16 +13,25 @@ interface Props {
   status: ExecutionStatus;
   statusText?: string;
   onChange(value: string): void;
+  onExpandClick?(): void;
 }
 
-const InputBox: FC<Props> = ({ name, status, statusText, onChange }) => {
+const InputBox: FC<Props> = ({
+  name,
+  status,
+  statusText,
+  onChange,
+  onExpandClick
+}) => {
   return (
     <div className={styles.main}>
       <div className={classnames(styles.header, styles[status])}>
         <span className={styles.name}>{name}</span>
         <div className={styles.rightBlock}>
           {statusText !== undefined && <span>{statusText}</span>}
-          <ExpandIcon className={styles.expandIcon} />
+          <Button className={styles.expandIcon} onClick={onExpandClick}>
+            <ExpandIcon width={18} />
+          </Button>
         </div>
       </div>
       <Editor onChange={onChange} />
