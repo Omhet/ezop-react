@@ -1,3 +1,31 @@
 .main {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
+    border-left: 12px solid $mainAccent;
+    border-right: 12px solid $mainBackS;
+    padding-bottom: 8px;
+}
+
+.block {
+    display: flex;
+    flex: 1;
+
+    & > :first-child {
+        width: 150%;
+    }
+
+    & > :last-child {
+        margin-left: 12px;
+    }
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    & > :last-child {
+        margin-top: 12px;
+    }
 }

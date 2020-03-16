@@ -10,10 +10,16 @@ const App = () => {
   return (
     <div className={styles.main}>
       <PageHeader />
-      <OntologyBox />
-      <OntologyLogs />
-      <QueryBox />
-      <QueryLogs />
+      <div className={styles.layout}>
+        <div className={styles.block}>
+          <OntologyBox />
+          <OntologyLogs />
+        </div>
+        <div className={styles.block}>
+          <QueryBox />
+          <QueryLogs />
+        </div>
+      </div>
     </div>
   );
 };

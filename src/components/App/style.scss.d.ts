@@ -1,5 +1,7 @@
 declare namespace StyleScssModule {
   export interface IStyleScss {
+    block: string;
+    layout: string;
     main: string;
   }
 }
