@@ -6,6 +6,7 @@ import OntologyBox from '../../containers/OntologyBox';
 import QueryLogs from '../../containers/QueryLogs';
 import OntologyLogs from '../../containers/OntologyLogs';
 import QueryToolbar from '../../containers/QueryToolbar';
+import OntologyToolbar from '../../containers/OntologyToolbar';
 
 const App = () => {
   return (
@@ -14,13 +15,16 @@ const App = () => {
       <div className={styles.layout}>
         <div className={styles.block}>
           <div>
-            <QueryToolbar />
+            <OntologyToolbar />
             <OntologyBox />
           </div>
           <OntologyLogs />
         </div>
         <div className={styles.block}>
-          <QueryBox />
+          <div>
+            <QueryToolbar />
+            <QueryBox />
+          </div>
           <QueryLogs />
         </div>
       </div>

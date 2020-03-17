@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import styles from './style.scss';
 import RunIcon from '../../icons/Run.svg';
 import DeleteIcon from '../../icons/Delete.svg';
 import DownloadIcon from '../../icons/Download.svg';
