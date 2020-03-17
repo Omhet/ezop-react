@@ -18,10 +18,11 @@ const Editor: FC<Props> = ({ onChange }) => {
       name="UNIQUE_ID_OF_DIV"
       fontSize={16}
       editorProps={{ $blockScrolling: true }}
-      width="100%"
-      height="100%"
       highlightActiveLine={false}
       showPrintMargin={false}
+      width="auto"
+      height="auto"
+      className={styles.editor}
     />
   );
 };

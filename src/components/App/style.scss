@@ -9,9 +9,10 @@
 
 .block {
     display: flex;
-    flex: 1;
+    flex-grow: 1;
 
     & > :first-child {
+        display: flex;
         width: 150%;
     }
 
@@ -23,7 +24,7 @@
 .layout {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex-grow: 1;
 
     & > :last-child {
         margin-top: 12px;

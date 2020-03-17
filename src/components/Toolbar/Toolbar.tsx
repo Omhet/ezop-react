@@ -4,13 +4,13 @@ import classnames from 'classnames';
 import styles from './style.scss';
 import { ExecutionStatus } from '../../types';
 
-interface Props {
+export interface ToolbarProps {
   status: ExecutionStatus;
   buttons: ReactNodeArray;
   mainButton?: ReactNode;
 }
 
-const Toolbar: FC<Props> = ({ status, buttons, mainButton }) => {
+const Toolbar: FC<ToolbarProps> = ({ status, buttons, mainButton }) => {
   return (
     <div className={styles.main}>
       <div className={classnames(styles.header, styles[status])}></div>

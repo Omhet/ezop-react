@@ -5,6 +5,7 @@ import PageHeader from '../../containers/PageHeader';
 import OntologyBox from '../../containers/OntologyBox';
 import QueryLogs from '../../containers/QueryLogs';
 import OntologyLogs from '../../containers/OntologyLogs';
+import QueryToolbar from '../../containers/QueryToolbar';
 
 const App = () => {
   return (
@@ -12,7 +13,10 @@ const App = () => {
       <PageHeader />
       <div className={styles.layout}>
         <div className={styles.block}>
-          <OntologyBox />
+          <div>
+            <QueryToolbar />
+            <OntologyBox />
+          </div>
           <OntologyLogs />
         </div>
         <div className={styles.block}>
