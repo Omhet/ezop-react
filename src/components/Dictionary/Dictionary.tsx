@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './style.scss';
-import CollapseIcon from '../../icons/RightArrowCircle.svg';
+import CollapseIcon from '../../icons/LeftArrowCircle.svg';
 import { DictionaryItem } from '../../types';
 import Header from '../Header/Header';
 
