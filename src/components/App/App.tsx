@@ -7,25 +7,29 @@ import QueryLogs from '../../containers/QueryLogs';
 import OntologyLogs from '../../containers/OntologyLogs';
 import QueryToolbar from '../../containers/QueryToolbar';
 import OntologyToolbar from '../../containers/OntologyToolbar';
+import Dictionary from '../../containers/Dictionary';
 
 const App = () => {
   return (
     <div className={styles.main}>
       <PageHeader />
       <div className={styles.layout}>
-        <div className={styles.block}>
-          <div>
-            <OntologyToolbar />
-            <OntologyBox />
+        <Dictionary />
+        <div className={styles.blockLayout}>
+          <div className={styles.block}>
+            <div>
+              <OntologyToolbar />
+              <OntologyBox />
+            </div>
+            <OntologyLogs />
           </div>
-          <OntologyLogs />
-        </div>
-        <div className={styles.block}>
-          <div>
-            <QueryToolbar />
-            <QueryBox />
+          <div className={styles.block}>
+            <div>
+              <QueryToolbar />
+              <QueryBox />
+            </div>
+            <QueryLogs />
           </div>
-          <QueryLogs />
         </div>
       </div>
     </div>

@@ -7,6 +7,27 @@
     padding-bottom: 8px;
 }
 
+.layout {
+    display: flex;
+    flex-grow: 1;
+
+    & > :first-child {
+        min-width: 340px;
+        margin-right: 12px;
+    }
+
+}
+
+.blockLayout {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    & > :last-child {
+        margin-top: 12px;
+    }
+}
+
 .block {
     display: flex;
     flex-grow: 1;
@@ -18,15 +39,5 @@
 
     & > :last-child {
         margin-left: 12px;
-    }
-}
-
-.layout {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-
-    & > :last-child {
-        margin-top: 12px;
     }
 }
