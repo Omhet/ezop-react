@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 8px;
+  width: 100%;
+  height: 36px;
+  background-color: $mainAccent;
+}
+
+.name {
+  color: $auxColor;
+  font-weight: bold;
+}
+
+.collapseIcon {
+  margin-left: auto;
+}

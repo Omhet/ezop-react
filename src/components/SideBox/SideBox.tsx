@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import CollapseIcon from '../../icons/RightArrowCircle.svg';
 
 import styles from './style.scss';
-import Button from '../Button/Button';
+import Header from '../Header/Header';
 
 interface Props {
   name: string;
@@ -13,12 +13,11 @@ interface Props {
 const SideBox: FC<Props> = ({ name, value, onCollapseClick }) => {
   return (
     <div className={styles.main}>
-      <div className={styles.header}>
-        <span className={styles.name}>{name}</span>
-        <Button className={styles.collapseIcon} onClick={onCollapseClick}>
-          <CollapseIcon width={18} />
-        </Button>
-      </div>
+      <Header
+        name={name}
+        icon={<CollapseIcon width={20} />}
+        onIconClick={onCollapseClick}
+      />
       <div className={styles.value}>{value}</div>
     </div>
   );
