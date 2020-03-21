@@ -3,6 +3,7 @@ import { RootState } from '../redux/types';
 import InputBox from '../components/InputBox/InputBox';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
+import { ontologyFsa } from '../redux/modules/ontology';
 
 const mapState = (state: RootState) => {
   const { ontology } = state;
@@ -10,13 +11,14 @@ const mapState = (state: RootState) => {
   return {
     name: 'Грамматика булевых выражений',
     status: 'idle' as ExecutionStatus,
-    fontSize: ontology.fontSize
+    fontSize: ontology.fontSize,
+    value: ontology.value
   };
 };
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onChange: (value: string) => {
-    console.log(value);
+    dispatch(ontologyFsa.setValue(value));
   }
 });
 

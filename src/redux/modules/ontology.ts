@@ -4,16 +4,19 @@ import { changeFontSize } from '../helpers/misc';
 
 const fsa = {
   increaseFont: createAction('ONTOLOGY/INCREASE_FONT')<undefined>(),
-  decreaseFont: createAction('ONTOLOGY/DECREASE_FONT')<undefined>()
+  decreaseFont: createAction('ONTOLOGY/DECREASE_FONT')<undefined>(),
+  setValue: createAction('ONTOLOGY/SET_VALUE')<string>()
 };
 export const ontologyFsa = fsa;
 
 interface State {
   fontSize: number;
+  value: string;
 }
 
 const initialState: State = {
-  fontSize: 16
+  fontSize: 16,
+  value: ''
 };
 
 export const ontologyReducer = withState(initialState)
@@ -24,4 +27,8 @@ export const ontologyReducer = withState(initialState)
   .add(fsa.decreaseFont, state => ({
     ...state,
     fontSize: changeFontSize(state.fontSize, -2)
+  }))
+  .add(fsa.setValue, (state, { payload }) => ({
+    ...state,
+    value: payload
   }));
