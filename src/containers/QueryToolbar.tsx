@@ -3,6 +3,7 @@ import { RootState } from '../redux/types';
 import QueryToolbar from '../components/QueryToolbar/QueryToolbar';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
+import { queryFsa } from '../redux/modules/query';
 
 const mapState = (state: RootState) => {
   return {
@@ -21,10 +22,10 @@ const mapDispatch = (dispatch: Dispatch) => ({
     console.log('Download');
   },
   onZoomInClick: () => {
-    console.log('Zoom In');
+    dispatch(queryFsa.increaseFont());
   },
   onZoomOutClick: () => {
-    console.log('Zoom Out');
+    dispatch(queryFsa.decreaseFont());
   }
 });
 

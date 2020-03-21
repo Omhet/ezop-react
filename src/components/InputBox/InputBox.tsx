@@ -3,15 +3,14 @@ import classnames from 'classnames';
 import ExpandIcon from '../../icons/Expand.svg';
 
 import styles from './style.scss';
-import Editor from '../Editor/Editor';
+import Editor, { EditorProps } from '../Editor/Editor';
 import Button from '../Button/Button';
 import { ExecutionStatus } from '../../types';
 
-interface Props {
+interface Props extends EditorProps {
   name: string;
   status: ExecutionStatus;
   statusText?: string;
-  onChange(value: string): void;
   onExpandClick?(): void;
 }
 
@@ -20,6 +19,7 @@ const InputBox: FC<Props> = ({
   status,
   statusText,
   onChange,
+  fontSize,
   onExpandClick
 }) => {
   return (
@@ -33,7 +33,7 @@ const InputBox: FC<Props> = ({
           </Button>
         </div>
       </div>
-      <Editor onChange={onChange} />
+      <Editor onChange={onChange} fontSize={fontSize} />
     </div>
   );
 };

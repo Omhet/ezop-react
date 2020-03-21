@@ -5,9 +5,12 @@ import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
 
 const mapState = (state: RootState) => {
+  const { query } = state;
+
   return {
     name: 'Запрос',
-    status: 'idle' as ExecutionStatus
+    status: 'idle' as ExecutionStatus,
+    fontSize: query.fontSize
   };
 };
 

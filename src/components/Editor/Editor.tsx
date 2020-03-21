@@ -5,18 +5,19 @@ import styles from './style.scss';
 import 'ace-builds/src-noconflict/mode-text';
 import 'ace-builds/src-noconflict/theme-github';
 
-interface Props {
+export interface EditorProps {
+  fontSize?: number;
   onChange(value: string): void;
 }
 
-const Editor: FC<Props> = ({ onChange }) => {
+const Editor: FC<EditorProps> = ({ onChange, fontSize = 16 }) => {
   return (
     <AceEditor
       mode="text"
       theme="github"
       onChange={onChange}
       name="UNIQUE_ID_OF_DIV"
-      fontSize={16}
+      fontSize={fontSize}
       editorProps={{ $blockScrolling: true }}
       highlightActiveLine={false}
       showPrintMargin={false}
