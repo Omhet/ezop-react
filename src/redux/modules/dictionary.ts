@@ -1,10 +1,11 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 
-export const dictionaryFsa = {
+export const fsa = {
   openDictionary: createAction('DICTIONARY/OPEN')<undefined>(),
   closeDictionary: createAction('DICTIONARY/CLOSE')<undefined>()
 };
+export const dictionaryFsa = fsa;
 
 interface State {
   isOpen: boolean;
@@ -15,11 +16,11 @@ const initialState: State = {
 };
 
 export const dictionaryReducer = withState(initialState)
-  .add(dictionaryFsa.openDictionary, state => ({
+  .add(fsa.openDictionary, state => ({
     ...state,
     isOpen: true
   }))
-  .add(dictionaryFsa.closeDictionary, state => ({
+  .add(fsa.closeDictionary, state => ({
     ...state,
     isOpen: false
   }));
