@@ -21,4 +21,4 @@ const items: DictionaryItem[] = [
   }
 ];
 
-export const Basic = () => <Dictionary items={items} />;
+export const Basic = () => <Dictionary isOpen items={items} />;

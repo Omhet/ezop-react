@@ -14,7 +14,7 @@ const App = () => {
     <div className={styles.main}>
       <PageHeader />
       <div className={styles.layout}>
-        <Dictionary />
+        <Dictionary className={styles.dictionary} />
         <div className={styles.blockLayout}>
           <div className={styles.block}>
             <div>

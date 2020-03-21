@@ -21,7 +21,8 @@ const items: DictionaryItem[] = [
 
 const mapState = (state: RootState) => {
   return {
-    items
+    items,
+    isOpen: true
   };
 };
 

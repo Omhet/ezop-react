@@ -10,12 +10,11 @@
 .layout {
     display: flex;
     flex-grow: 1;
+}
 
-    & > :first-child {
-        min-width: 340px;
-        margin-right: 12px;
-    }
-
+.dictionary {
+    min-width: 340px;
+    margin-right: 12px;
 }
 
 .blockLayout {
