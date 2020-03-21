@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux';
-
-import count from './count/reducer';
+import { dictionaryReducer } from './modules/dictionary';
 
 export const rootReducer = combineReducers({
-  count
+  dictionary: dictionaryReducer
 });
-
-export type RootState = ReturnType<typeof rootReducer>;

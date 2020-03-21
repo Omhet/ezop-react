@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { RootState } from '../redux/rootReducer';
+import { RootState } from '../redux/types';
 import OntologyToolbar from '../components/OntologyToolbar/OntologyToolbar';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';

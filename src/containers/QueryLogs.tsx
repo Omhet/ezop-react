@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { RootState } from '../redux/rootReducer';
+import { RootState } from '../redux/types';
 import SideBox from '../components/SideBox/SideBox';
 
 const value = ` ~(x_1 V x_2)- Бул_выр?

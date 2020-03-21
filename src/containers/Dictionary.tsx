@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { RootState } from '../redux/rootReducer';
+import { RootState } from '../redux/types';
 import Dictionary from '../components/Dictionary/Dictionary';
 import { Dispatch } from 'redux';
 import { DictionaryItem } from '../types';
@@ -22,7 +22,7 @@ const items: DictionaryItem[] = [
 const mapState = (state: RootState) => {
   return {
     items,
-    isOpen: true
+    isOpen: state.dictionary.isOpen
   };
 };
 

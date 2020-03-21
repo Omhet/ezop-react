@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { RootState } from '../redux/rootReducer';
+import { RootState } from '../redux/types';
 import QueryToolbar from '../components/QueryToolbar/QueryToolbar';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';

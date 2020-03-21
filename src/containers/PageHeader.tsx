@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { RootState } from '../redux/rootReducer';
+import { RootState } from '../redux/types';
 import PageHeader from '../components/PageHeader/PageHeader';
 
 const mapState = (state: RootState) => {

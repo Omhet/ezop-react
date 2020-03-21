@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { RootState } from '../redux/rootReducer';
+import { RootState } from '../redux/types';
 import SideBox from '../components/SideBox/SideBox';
 
 const value = `>> Неизвестное слово: бул_выр
