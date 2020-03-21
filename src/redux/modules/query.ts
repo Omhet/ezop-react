@@ -5,7 +5,8 @@ import { changeFontSize } from '../helpers/misc';
 const fsa = {
   increaseFont: createAction('QUERY/INCREASE_FONT')<undefined>(),
   decreaseFont: createAction('QUERY/DECREASE_FONT')<undefined>(),
-  setValue: createAction('QUERY/SET_VALUE')<string>()
+  setValue: createAction('QUERY/SET_VALUE')<string>(),
+  clearValue: createAction('QUERY/CLEAR_VALUE')<undefined>()
 };
 export const queryFsa = fsa;
 
@@ -31,4 +32,8 @@ export const queryReducer = withState(initialState)
   .add(fsa.setValue, (state, { payload }) => ({
     ...state,
     value: payload
+  }))
+  .add(fsa.clearValue, state => ({
+    ...state,
+    value: ''
   }));
