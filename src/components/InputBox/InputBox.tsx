@@ -20,6 +20,7 @@ const InputBox: FC<Props> = ({
   statusText,
   onChange,
   fontSize,
+  value,
   onExpandClick
 }) => {
   return (
@@ -33,7 +34,7 @@ const InputBox: FC<Props> = ({
           </Button>
         </div>
       </div>
-      <Editor onChange={onChange} fontSize={fontSize} />
+      <Editor onChange={onChange} fontSize={fontSize} value={value} />
     </div>
   );
 };

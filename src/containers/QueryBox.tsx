@@ -3,6 +3,7 @@ import { RootState } from '../redux/types';
 import InputBox from '../components/InputBox/InputBox';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
+import { queryFsa } from '../redux/modules/query';
 
 const mapState = (state: RootState) => {
   const { query } = state;
@@ -10,13 +11,14 @@ const mapState = (state: RootState) => {
   return {
     name: 'Запрос',
     status: 'idle' as ExecutionStatus,
-    fontSize: query.fontSize
+    fontSize: query.fontSize,
+    value: query.value
   };
 };
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onChange: (value: string) => {
-    console.log(value);
+    dispatch(queryFsa.setValue(value));
   }
 });
 

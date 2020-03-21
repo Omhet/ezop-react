@@ -4,16 +4,19 @@ import { changeFontSize } from '../helpers/misc';
 
 const fsa = {
   increaseFont: createAction('QUERY/INCREASE_FONT')<undefined>(),
-  decreaseFont: createAction('QUERY/DECREASE_FONT')<undefined>()
+  decreaseFont: createAction('QUERY/DECREASE_FONT')<undefined>(),
+  setValue: createAction('QUERY/SET_VALUE')<string>()
 };
 export const queryFsa = fsa;
 
 interface State {
   fontSize: number;
+  value: string;
 }
 
 const initialState: State = {
-  fontSize: 16
+  fontSize: 16,
+  value: ''
 };
 
 export const queryReducer = withState(initialState)
@@ -24,4 +27,8 @@ export const queryReducer = withState(initialState)
   .add(fsa.decreaseFont, state => ({
     ...state,
     fontSize: changeFontSize(state.fontSize, -2)
+  }))
+  .add(fsa.setValue, (state, { payload }) => ({
+    ...state,
+    value: payload
   }));

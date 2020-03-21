@@ -6,17 +6,19 @@ import 'ace-builds/src-noconflict/mode-text';
 import 'ace-builds/src-noconflict/theme-github';
 
 export interface EditorProps {
+  value?: string;
   fontSize?: number;
   onChange(value: string): void;
 }
 
-const Editor: FC<EditorProps> = ({ onChange, fontSize = 16 }) => {
+const Editor: FC<EditorProps> = ({ onChange, value, fontSize = 16 }) => {
   return (
     <AceEditor
       mode="text"
       theme="github"
       onChange={onChange}
       name="UNIQUE_ID_OF_DIV"
+      value={value}
       fontSize={fontSize}
       editorProps={{ $blockScrolling: true }}
       highlightActiveLine={false}
