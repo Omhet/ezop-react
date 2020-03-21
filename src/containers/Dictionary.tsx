@@ -3,6 +3,7 @@ import { RootState } from '../redux/types';
 import Dictionary from '../components/Dictionary/Dictionary';
 import { Dispatch } from 'redux';
 import { DictionaryItem } from '../types';
+import { dictionaryFsa } from '../redux/modules/dictionary';
 
 const items: DictionaryItem[] = [
   {
@@ -28,7 +29,7 @@ const mapState = (state: RootState) => {
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onCollapseClick: () => {
-    console.log('Collapse dic');
+    dispatch(dictionaryFsa.closeDictionary());
   }
 });
 
