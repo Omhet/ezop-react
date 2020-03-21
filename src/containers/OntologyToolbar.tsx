@@ -4,6 +4,7 @@ import OntologyToolbar from '../components/OntologyToolbar/OntologyToolbar';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
 import { dictionaryFsa } from '../redux/modules/dictionary';
+import { ontologyFsa } from '../redux/modules/ontology';
 
 const mapState = (state: RootState) => {
   return {
@@ -25,10 +26,10 @@ const mapDispatch = (dispatch: Dispatch) => ({
     console.log('Upload');
   },
   onZoomInClick: () => {
-    console.log('Zoom In');
+    dispatch(ontologyFsa.increaseFont());
   },
   onZoomOutClick: () => {
-    console.log('Zoom Out');
+    dispatch(ontologyFsa.decreaseFont());
   }
 });
 

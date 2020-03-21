@@ -5,9 +5,12 @@ import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
 
 const mapState = (state: RootState) => {
+  const { ontology } = state;
+
   return {
     name: 'Грамматика булевых выражений',
-    status: 'idle' as ExecutionStatus
+    status: 'idle' as ExecutionStatus,
+    fontSize: ontology.fontSize
   };
 };
 
