@@ -3,7 +3,7 @@ import { RootState } from '../redux/types';
 import QueryToolbar from '../components/QueryToolbar/QueryToolbar';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
-import { queryFsa } from '../redux/modules/query';
+import { queryFsa, runQuery } from '../redux/modules/query';
 
 const mapState = (state: RootState) => {
   return {
@@ -13,7 +13,7 @@ const mapState = (state: RootState) => {
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onRunClick: () => {
-    console.log('Run');
+    dispatch(runQuery());
   },
   onDeleteClick: () => {
     dispatch(queryFsa.clearValue());

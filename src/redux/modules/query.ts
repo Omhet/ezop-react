@@ -1,6 +1,9 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
+import { ThunkAction } from 'redux-thunk';
+import { RootState } from '../types';
+import { requestRunCommand, parseResponse } from '../helpers/request';
 
 const fsa = {
   increaseFont: createAction('QUERY/INCREASE_FONT')<undefined>(),
@@ -37,3 +40,14 @@ export const queryReducer = withState(initialState)
     ...state,
     value: ''
   }));
+
+export const runQuery: ThunkAction = () => async (dispatch, getState) => {
+  const { query }: RootState = getState();
+  console.log({ query });
+
+  const response = await requestRunCommand(query.value);
+  const [answer, rest, mes] = await parseResponse(response);
+  console.log({ answer, rest, mes });
+
+  dispatch(queryFsa.setValue(answer));
+};
