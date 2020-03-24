@@ -1,12 +1,18 @@
+function decodeHtml(html: string) {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = html;
+  return txt.value;
+}
+
 export async function parseResponse(response?: Response) {
   const resArrBuf = (await response?.arrayBuffer()) ?? new ArrayBuffer(0);
   const resArr = new Uint8Array(resArrBuf);
+
   const win1251decoder = new TextDecoder('windows-1251');
-  const responseText = win1251decoder.decode(resArr);
-
+  const textWithHtml = win1251decoder.decode(resArr);
+  const plainText = decodeHtml(textWithHtml);
   const divider = '~~DIVIDER~~';
-
-  return responseText.split(divider);
+  return plainText.split(divider);
 }
 
 export async function requestRunCommand(cmd: string) {
