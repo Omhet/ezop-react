@@ -10,4 +10,6 @@
   font-family: 'Monaco', monospace;
   line-height: 20px;
   padding: 12px 16px;
+  overflow: auto;
+  max-height: calc(100% - 36px);
 }
