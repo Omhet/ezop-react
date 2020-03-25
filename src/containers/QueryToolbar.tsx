@@ -16,7 +16,7 @@ const mapDispatch = (dispatch: Dispatch) => ({
     dispatch(runQuery());
   },
   onDeleteClick: () => {
-    dispatch(queryFsa.clearValue());
+    dispatch(queryFsa.clearQuery());
   },
   onDownloadClick: () => {
     console.log('Download');

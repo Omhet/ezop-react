@@ -5,22 +5,30 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../types';
 import { requestRunCommand, parseResponse } from '../helpers/request';
 
+interface Query {
+  value: string;
+  error: string;
+  logs: string;
+}
+
 const fsa = {
   increaseFont: createAction('QUERY/INCREASE_FONT')<undefined>(),
   decreaseFont: createAction('QUERY/DECREASE_FONT')<undefined>(),
   setValue: createAction('QUERY/SET_VALUE')<string>(),
-  clearValue: createAction('QUERY/CLEAR_VALUE')<undefined>()
+  setQuery: createAction('QUERY/SET_QUERY')<Query>(),
+  clearQuery: createAction('QUERY/CLEAR_QUERY')<undefined>()
 };
 export const queryFsa = fsa;
 
-interface State {
+interface State extends Query {
   fontSize: number;
-  value: string;
 }
 
 const initialState: State = {
   fontSize: 16,
-  value: ''
+  value: '',
+  error: '',
+  logs: ''
 };
 
 export const queryReducer = withState(initialState)
@@ -36,9 +44,17 @@ export const queryReducer = withState(initialState)
     ...state,
     value: payload
   }))
-  .add(fsa.clearValue, state => ({
+  .add(fsa.setQuery, (state, { payload: { value, error, logs } }) => ({
     ...state,
-    value: ''
+    value,
+    error,
+    logs
+  }))
+  .add(fsa.clearQuery, state => ({
+    ...state,
+    value: '',
+    error: '',
+    logs: ''
   }));
 
 export const runQuery: ThunkAction = () => async (dispatch, getState) => {
@@ -46,8 +62,8 @@ export const runQuery: ThunkAction = () => async (dispatch, getState) => {
   console.log({ query });
 
   const response = await requestRunCommand(query.value);
-  const [answer, rest, mes] = await parseResponse(response);
-  console.log({ answer, rest, mes });
+  const [answer, error, logs] = await parseResponse(response);
+  console.log({ answer, error, logs });
 
-  dispatch(queryFsa.setValue(answer));
+  dispatch(queryFsa.setQuery({ value: answer, error, logs }));
 };

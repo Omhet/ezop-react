@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../xampp/htdocs/ezop/spa')
     // publicPath: '/ezop-react/'
   },
   resolve: {
@@ -23,10 +23,10 @@ module.exports = {
     timings: false
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
+    // new CleanWebpackPlugin(),
+    // new HtmlWebpackPlugin({
+    //   template: './src/index.html'
+    // })
   ],
   module: {
     rules: [
