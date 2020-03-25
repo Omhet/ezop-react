@@ -1,6 +1,7 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
+import { Query } from '../types';
 
 const fsa = {
   increaseFont: createAction('ONTOLOGY/INCREASE_FONT')<undefined>(),
@@ -9,14 +10,15 @@ const fsa = {
 };
 export const ontologyFsa = fsa;
 
-interface State {
+interface State extends Query {
   fontSize: number;
-  value: string;
 }
 
 const initialState: State = {
   fontSize: 16,
-  value: ''
+  value: '',
+  error: '',
+  logs: ''
 };
 
 export const ontologyReducer = withState(initialState)

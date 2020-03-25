@@ -2,14 +2,8 @@ import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
 import { ThunkAction } from 'redux-thunk';
-import { RootState } from '../types';
+import { RootState, Query } from '../types';
 import { requestRunCommand, parseResponse } from '../helpers/request';
-
-interface Query {
-  value: string;
-  error: string;
-  logs: string;
-}
 
 const fsa = {
   increaseFont: createAction('QUERY/INCREASE_FONT')<undefined>(),

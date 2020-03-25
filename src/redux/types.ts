@@ -6,3 +6,9 @@ export interface Action<Payload> {
 }
 
 export type RootState = ReturnType<typeof rootReducer>;
+
+export interface Query {
+  value: string;
+  error: string;
+  logs: string;
+}
