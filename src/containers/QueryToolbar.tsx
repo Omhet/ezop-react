@@ -2,12 +2,11 @@ import { connect } from 'react-redux';
 import { RootState } from '../redux/types';
 import QueryToolbar from '../components/QueryToolbar/QueryToolbar';
 import { Dispatch } from 'redux';
-import { ExecutionStatus } from '../types';
 import { queryFsa, runQuery } from '../redux/modules/query';
 
 const mapState = (state: RootState) => {
   return {
-    status: 'idle' as ExecutionStatus
+    status: state.query.status
   };
 };
 

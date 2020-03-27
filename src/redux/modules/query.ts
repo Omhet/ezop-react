@@ -4,11 +4,13 @@ import { changeFontSize } from '../helpers/misc';
 import { ThunkAction } from 'redux-thunk';
 import { RootState, Query } from '../types';
 import { requestRunCommand, parseResponse } from '../helpers/request';
+import { ExecutionStatus } from '../../types';
 
 const fsa = {
   increaseFont: createAction('QUERY/INCREASE_FONT')<undefined>(),
   decreaseFont: createAction('QUERY/DECREASE_FONT')<undefined>(),
   setValue: createAction('QUERY/SET_VALUE')<string>(),
+  setStatus: createAction('QUERY/SET_STATUS')<ExecutionStatus>(),
   setQuery: createAction('QUERY/SET_QUERY')<Query>(),
   clearQuery: createAction('QUERY/CLEAR_QUERY')<undefined>()
 };
@@ -22,7 +24,8 @@ const initialState: State = {
   fontSize: 16,
   value: '',
   error: '',
-  logs: ''
+  logs: '',
+  status: 'idle'
 };
 
 export const queryReducer = withState(initialState)
@@ -38,17 +41,23 @@ export const queryReducer = withState(initialState)
     ...state,
     value: payload
   }))
-  .add(fsa.setQuery, (state, { payload: { value, error, logs } }) => ({
+  .add(fsa.setStatus, (state, { payload }) => ({
+    ...state,
+    status: payload
+  }))
+  .add(fsa.setQuery, (state, { payload: { value, error, logs, status } }) => ({
     ...state,
     value: error ? state.value : value,
     error,
-    logs
+    logs,
+    status
   }))
   .add(fsa.clearQuery, state => ({
     ...state,
     value: '',
     error: '',
-    logs: ''
+    logs: '',
+    status: 'idle'
   }));
 
 export const runQuery: ThunkAction = () => async (dispatch, getState) => {
@@ -59,5 +68,9 @@ export const runQuery: ThunkAction = () => async (dispatch, getState) => {
   const [answer, error, logs] = await parseResponse(response);
   console.log({ answer, error, logs });
 
-  dispatch(queryFsa.setQuery({ value: answer, error: error.trim(), logs }));
+  const status = error ? 'error' : 'success';
+
+  dispatch(
+    queryFsa.setQuery({ value: answer, error: error.trim(), logs, status })
+  );
 };

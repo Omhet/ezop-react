@@ -1,4 +1,5 @@
 import { rootReducer } from './rootReducer';
+import { ExecutionStatus } from '../types';
 
 export interface Action<Payload> {
   type: string;
@@ -11,4 +12,5 @@ export interface Query {
   value: string;
   error: string;
   logs: string;
+  status: ExecutionStatus;
 }
