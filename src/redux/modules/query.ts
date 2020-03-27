@@ -40,7 +40,7 @@ export const queryReducer = withState(initialState)
   }))
   .add(fsa.setQuery, (state, { payload: { value, error, logs } }) => ({
     ...state,
-    value,
+    value: error ? state.value : value,
     error,
     logs
   }))
@@ -59,5 +59,5 @@ export const runQuery: ThunkAction = () => async (dispatch, getState) => {
   const [answer, error, logs] = await parseResponse(response);
   console.log({ answer, error, logs });
 
-  dispatch(queryFsa.setQuery({ value: answer, error, logs }));
+  dispatch(queryFsa.setQuery({ value: answer, error: error.trim(), logs }));
 };

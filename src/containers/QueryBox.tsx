@@ -6,13 +6,16 @@ import { ExecutionStatus } from '../types';
 import { queryFsa } from '../redux/modules/query';
 
 const mapState = (state: RootState) => {
-  const { query } = state;
+  const {
+    query: { fontSize, value, error }
+  } = state;
 
   return {
     name: 'Запрос',
     status: 'idle' as ExecutionStatus,
-    fontSize: query.fontSize,
-    value: query.value
+    fontSize,
+    value,
+    error
   };
 };
 
