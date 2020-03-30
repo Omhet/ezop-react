@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import { RootState } from '../redux/types';
 import PageHeader from '../components/PageHeader/PageHeader';
 
-const mapState = (state: RootState) => {
+const mapState = () => {
   return {
-    env: 'Ядро системы',
-    author: 'admin'
+    env: window.serverData.ontology.env,
+    author: window.serverData.ontology.author
   };
 };
 

@@ -25,6 +25,10 @@
   margin-left: auto;
   color: $mainColorS;
 
+  & > * {
+    display: flex;
+  }
+
   & > :last-child {
     margin-left: 16px;
   }
@@ -34,4 +38,9 @@
   color: $mainAccent;
   font-weight: bold;
   margin-left: 8px;
+  max-width: 37ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
 }

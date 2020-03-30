@@ -9,7 +9,7 @@ const mapState = (state: RootState) => {
   const { ontology } = state;
 
   return {
-    name: 'Грамматика булевых выражений',
+    name: window.serverData.ontology.title,
     status: 'idle' as ExecutionStatus,
     fontSize: ontology.fontSize,
     value: ontology.value

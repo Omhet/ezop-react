@@ -15,12 +15,18 @@ const PageHeader: FC<Props> = ({ env, author }) => {
         <span className={styles.logoText}>ЭЗОП</span>
       </div>
       <div className={styles.rightBlock}>
-        <span>
-          среда:<span className={styles.accent}>{env}</span>
-        </span>
-        <span>
-          автор:<span className={styles.accent}>{author}</span>
-        </span>
+        <div>
+          среда:
+          <div title={env} className={styles.accent}>
+            {env}
+          </div>
+        </div>
+        <div>
+          автор:
+          <div title={author} className={styles.accent}>
+            {author}
+          </div>
+        </div>
       </div>
     </div>
   );
