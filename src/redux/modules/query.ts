@@ -65,12 +65,12 @@ export const runQuery: ThunkAction = () => async (dispatch, getState) => {
   console.log({ query });
 
   const response = await requestRunCommand(query.value);
-  const [answer, error, logs] = await parseResponse(response);
-  console.log({ answer, error, logs });
+  const [answer, rawError, logs] = await parseResponse(response);
+  const error = rawError.trim();
 
   const status = error ? 'error' : 'success';
 
-  dispatch(
-    queryFsa.setQuery({ value: answer, error: error.trim(), logs, status })
-  );
+  console.log({ answer, error, logs, status });
+
+  dispatch(queryFsa.setQuery({ value: answer, error, logs, status }));
 };
