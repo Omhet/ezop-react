@@ -16,9 +16,10 @@ interface State extends Query {
 
 const initialState: State = {
   fontSize: 16,
-  value: '',
+  value: window.serverData.ontology.text,
   error: '',
-  logs: ''
+  logs: '',
+  status: 'idle'
 };
 
 export const ontologyReducer = withState(initialState)
