@@ -22,6 +22,7 @@ const InputBox: FC<Props> = ({
   fontSize,
   value,
   error,
+  isReadOnly,
   onExpandClick
 }) => {
   return (
@@ -40,6 +41,7 @@ const InputBox: FC<Props> = ({
         fontSize={fontSize}
         value={value}
         error={error}
+        isReadOnly={isReadOnly}
       />
     </div>
   );

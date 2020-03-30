@@ -12,12 +12,17 @@ const mapState = (state: RootState) => {
     name: window.serverData.ontology.title,
     status: 'idle' as ExecutionStatus,
     fontSize: ontology.fontSize,
-    value: ontology.value
+    value: ontology.value,
+    isReadOnly: !window.serverData.ontology.isDraft
   };
 };
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onChange: (value: string) => {
+    if (!window.serverData.ontology.isDraft) {
+      return;
+    }
+
     dispatch(ontologyFsa.setValue(value));
   }
 });

@@ -8,6 +8,7 @@ import 'ace-builds/src-noconflict/theme-github';
 export interface EditorProps {
   value?: string;
   error?: string;
+  isReadOnly?: boolean;
   fontSize?: number;
   onChange(value: string): void;
 }
@@ -16,6 +17,7 @@ const Editor: FC<EditorProps> = ({
   onChange,
   value = '',
   error = '',
+  isReadOnly = false,
   fontSize = 16
 }) => {
   const [shouldShowError, setShouldShowError] = useState(false);
@@ -94,6 +96,7 @@ const Editor: FC<EditorProps> = ({
       editorProps={{ $blockScrolling: true }}
       highlightActiveLine={false}
       showPrintMargin={false}
+      readOnly={isReadOnly}
       width="auto"
       height="auto"
       className={styles.editor}
