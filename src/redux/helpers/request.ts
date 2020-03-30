@@ -20,7 +20,7 @@ export async function requestRunCommand(cmd: string) {
   formData.append('menu_item', 'CMD_run');
   formData.append('inset', 'CC');
   formData.append('cmd', cmd);
-  formData.append('curcnpt_id', window.SERVER_DATA.curcnpt_id);
+  formData.append('curcnpt_id', window.serverData.curcnpt_id);
   formData.append('user', 'admin');
 
   const params = new URLSearchParams();
