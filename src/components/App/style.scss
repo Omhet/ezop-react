@@ -14,8 +14,10 @@
 }
 
 .dictionary {
-    max-width: 340px;
+    max-width: 370px;
     margin-right: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .blockLayout {
