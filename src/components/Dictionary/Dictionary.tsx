@@ -2,11 +2,10 @@ import React, { FC } from 'react';
 import classnames from 'classnames';
 import styles from './style.scss';
 import CollapseIcon from '../../icons/LeftArrowCircle.svg';
-import { DictionaryItem } from '../../types';
 import Header from '../Header/Header';
 
 interface Props {
-  items: DictionaryItem[];
+  items: string[];
   isOpen: boolean;
   className?: string;
   onCollapseClick?(): void;
@@ -26,9 +25,9 @@ const Dictionary: FC<Props> = ({
         onIconClick={onCollapseClick}
       />
       <div className={styles.items}>
-        {items.map(({ value, description }) => (
-          <div title={description} key={value}>
-            {value}
+        {items.map(item => (
+          <div title={item} key={item}>
+            {item}
           </div>
         ))}
       </div>

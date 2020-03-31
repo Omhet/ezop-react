@@ -11,6 +11,7 @@ interface Ontology {
 interface ServerData {
   curcnpt_id: string;
   ontology: Ontology;
+  templates: string[];
 }
 
 declare global {
