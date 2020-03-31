@@ -38,3 +38,24 @@ export async function requestRunCommand(cmd: string) {
     console.error(err);
   }
 }
+
+export async function requestGetTemplates() {
+  const formData = new FormData();
+  formData.append('menu_item', 'DIC_all_cur_c');
+  formData.append('curcnpt_id', window.serverData.curcnpt_id);
+
+  const params = new URLSearchParams();
+  for (const pair of formData) {
+    params.append(pair[0], pair[1] as string);
+  }
+
+  try {
+    const res = await fetch(`/ezop/exe/editor.exe`, {
+      method: 'POST',
+      body: params
+    });
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
+}
