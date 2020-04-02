@@ -8,12 +8,15 @@ import { ontologyFsa } from '../redux/modules/ontology';
 const mapState = (state: RootState) => {
   const { ontology } = state;
 
+  const isDraft = window.serverData.ontology.isDraft;
+
   return {
     name: window.serverData.ontology.title,
     status: 'idle' as ExecutionStatus,
+    statusText: isDraft ? 'Черновик' : undefined,
     fontSize: ontology.fontSize,
     value: ontology.value,
-    isReadOnly: !window.serverData.ontology.isDraft
+    isReadOnly: !isDraft
   };
 };
 

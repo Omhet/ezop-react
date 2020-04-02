@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, '../xampp/htdocs/ezop/spa')
+    path: path.resolve(__dirname, '../xampp/htdocs/ezop/ezop-react')
     // publicPath: '/ezop-react/'
   },
   resolve: {

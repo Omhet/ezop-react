@@ -6,7 +6,7 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, '../xampp/htdocs/ezop/spa'),
+    contentBase: path.resolve(__dirname, '../xampp/htdocs/ezop/ezop-react'),
     writeToDisk: true
   }
 });
