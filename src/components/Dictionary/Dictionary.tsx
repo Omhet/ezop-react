@@ -24,13 +24,13 @@ const Dictionary: FC<Props> = ({
         icon={<CollapseIcon width={20} />}
         onIconClick={onCollapseClick}
       />
-      <div className={styles.items}>
+      <select size={items.length} className={styles.items}>
         {items.map(item => (
-          <div title={item} key={item}>
+          <option value={item} key={item}>
             {item}
-          </div>
+          </option>
         ))}
-      </div>
+      </select>
     </div>
   ) : null;
 };
