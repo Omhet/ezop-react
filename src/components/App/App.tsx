@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import QueryBox from '../../containers/QueryBox';
 import styles from './style.scss';
 import PageHeader from '../../containers/PageHeader';
@@ -9,7 +9,11 @@ import QueryToolbar from '../../containers/QueryToolbar';
 import OntologyToolbar from '../../containers/OntologyToolbar';
 import Dictionary from '../../containers/Dictionary';
 
-const App = () => {
+interface Props {
+  showOntologyLogs: boolean;
+}
+
+const App: FC<Props> = ({ showOntologyLogs }) => {
   return (
     <div className={styles.main}>
       <PageHeader />
@@ -21,14 +25,14 @@ const App = () => {
               <OntologyToolbar />
               <OntologyBox />
             </div>
-            <OntologyLogs />
+            {showOntologyLogs && <OntologyLogs className={styles.logs} />}
           </div>
           <div className={styles.block}>
             <div>
               <QueryToolbar />
               <QueryBox />
             </div>
-            <QueryLogs />
+            <QueryLogs className={styles.logs} />
           </div>
         </div>
       </div>

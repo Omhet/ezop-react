@@ -40,8 +40,8 @@
         display: flex;
         width: 150%;
     }
+}
 
-    & > :last-child {
-        margin-left: 12px;
-    }
+.logs {
+    margin-left: 12px;
 }

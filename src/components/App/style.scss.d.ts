@@ -4,6 +4,7 @@ declare namespace StyleScssModule {
     blockLayout: string;
     dictionary: string;
     layout: string;
+    logs: string;
     main: string;
   }
 }
