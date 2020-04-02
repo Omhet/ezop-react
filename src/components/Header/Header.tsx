@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 
 interface Props {
   name: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   onIconClick?(): void;
 }
 

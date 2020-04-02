@@ -43,7 +43,10 @@ const Dictionary: FC<Props> = ({
           </option>
         ))}
       </select>
-      <div className={styles.description}>{description}</div>
+      <div>
+        <Header name="Описание шаблона" />
+        <div className={styles.description}>{description}</div>
+      </div>
     </div>
   ) : null;
 };
