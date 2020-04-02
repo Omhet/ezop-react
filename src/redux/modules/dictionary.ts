@@ -17,7 +17,7 @@ interface State {
 
 const initialState: State = {
   isOpen: false,
-  description: ''
+  description: 'Выберите шаблон из словаря выше, чтобы узнать для чего он'
 };
 
 export const dictionaryReducer = withState(initialState)

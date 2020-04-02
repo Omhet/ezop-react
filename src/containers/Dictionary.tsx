@@ -5,9 +5,12 @@ import { Dispatch } from 'redux';
 import { dictionaryFsa, setItemDescription } from '../redux/modules/dictionary';
 
 const mapState = (state: RootState) => {
+  const { dictionary } = state;
+
   return {
     items: window.serverData.templates,
-    isOpen: state.dictionary.isOpen
+    isOpen: dictionary.isOpen,
+    description: dictionary.description
   };
 };
 

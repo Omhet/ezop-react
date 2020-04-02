@@ -8,6 +8,7 @@ interface Props {
   items: string[];
   isOpen: boolean;
   className?: string;
+  description: string;
   onCollapseClick?(): void;
   onItemClick(name: string): void;
 }
@@ -15,6 +16,7 @@ interface Props {
 const Dictionary: FC<Props> = ({
   items,
   isOpen,
+  description,
   className,
   onItemClick,
   onCollapseClick
@@ -41,6 +43,7 @@ const Dictionary: FC<Props> = ({
           </option>
         ))}
       </select>
+      <div className={styles.description}>{description}</div>
     </div>
   ) : null;
 };

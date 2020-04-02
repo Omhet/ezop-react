@@ -8,7 +8,9 @@
 .items {
   font-family: 'Monaco', monospace;
   background-color: $mainBack;
-  height: calc(100% - 36px);
+  height: calc(100% - 36px - 140px);
+  border: 0;
+  border-bottom: 2px solid $mainAccent;
 
   & > * {
     padding: 8px 16px;
@@ -26,4 +28,12 @@
   & > :nth-child(2n) {
     background-color: rgba($color: $mainAccent, $alpha: 0.1);
   }
+}
+
+.description {
+  padding: 12px 16px;
+  background-color: $mainBack;
+  height: 140px;
+  overflow-y: auto;
+  white-space: pre-line;
 }
