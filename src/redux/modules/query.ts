@@ -3,7 +3,7 @@ import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
 import { ThunkAction } from 'redux-thunk';
 import { RootState, Query } from '../types';
-import { requestRunCommand, parseResponse } from '../helpers/request';
+import { requestRunCommand } from '../helpers/request';
 import { ExecutionStatus } from '../../types';
 
 const fsa = {
@@ -64,8 +64,7 @@ export const runQuery: ThunkAction = () => async (dispatch, getState) => {
   const { query }: RootState = getState();
   console.log({ query });
 
-  const response = await requestRunCommand(query.value);
-  const [answer, rawError, logs] = await parseResponse(response);
+  const [answer, rawError, logs] = (await requestRunCommand(query.value)) ?? [];
   const error = rawError.trim();
 
   const status = error ? 'error' : 'success';

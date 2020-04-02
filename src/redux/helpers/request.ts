@@ -3,7 +3,7 @@ function strip(html: string) {
   return doc.body.textContent || '';
 }
 
-export async function parseResponse(response?: Response) {
+export async function parseResponseWithDivivder(response?: Response) {
   const resArrBuf = (await response?.arrayBuffer()) ?? new ArrayBuffer(0);
   const resArr = new Uint8Array(resArrBuf);
 
@@ -12,7 +12,17 @@ export async function parseResponse(response?: Response) {
   const plainText = strip(textWithHtml).trim();
   const divider = '~~DIVIDER~~';
   const values = plainText.split(divider);
-  return values.length === 1 ? values[0] : values;
+  return values;
+}
+
+export async function parseResponse(response?: Response) {
+  const resArrBuf = (await response?.arrayBuffer()) ?? new ArrayBuffer(0);
+  const resArr = new Uint8Array(resArrBuf);
+
+  const win1251decoder = new TextDecoder('windows-1251');
+  const textWithHtml = win1251decoder.decode(resArr);
+  const plainText = strip(textWithHtml).trim();
+  return plainText;
 }
 
 export async function requestRunCommand(cmd: string) {
@@ -33,16 +43,16 @@ export async function requestRunCommand(cmd: string) {
       method: 'POST',
       body: params
     });
-    return res;
+    return parseResponseWithDivivder(res);
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function requestDictionaryItemDescription(item: string) {
+export async function requestDictionaryItemDescription(itemName: string) {
   const formData = new FormData();
   formData.append('menu_item', 'tmpl_left_display');
-  formData.append('explorer_selected_left', item);
+  formData.append('explorer_selected_left', itemName);
   formData.append('curcnpt_id', window.serverData.curcnpt_id);
 
   const params = new URLSearchParams();
@@ -55,7 +65,7 @@ export async function requestDictionaryItemDescription(item: string) {
       method: 'POST',
       body: params
     });
-    return res;
+    return parseResponse(res);
   } catch (err) {
     console.error(err);
   }
