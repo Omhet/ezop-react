@@ -3,12 +3,14 @@ import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
 import { Query } from '../types';
 import { requestBuildOntology } from '../helpers/request';
+import { ExecutionStatus } from '../../types';
 
 const fsa = {
   increaseFont: createAction('ONTOLOGY/INCREASE_FONT')<undefined>(),
   decreaseFont: createAction('ONTOLOGY/DECREASE_FONT')<undefined>(),
   setValue: createAction('ONTOLOGY/SET_VALUE')<string>(),
-  setOntology: createAction('QUERY/SET_ONTOLOGY')<Omit<Query, 'value'>>()
+  setStatus: createAction('ONTOLOGY/SET_STATUS')<ExecutionStatus>(),
+  setOntology: createAction('ONTOLOGY/SET_ONTOLOGY')<Omit<Query, 'value'>>()
 };
 export const ontologyFsa = fsa;
 
@@ -36,6 +38,10 @@ export const ontologyReducer = withState(initialState)
   .add(fsa.setValue, (state, { payload }) => ({
     ...state,
     value: payload
+  }))
+  .add(fsa.setStatus, (state, { payload }) => ({
+    ...state,
+    status: payload
   }))
   .add(fsa.setOntology, (state, { payload: { error, logs, status } }) => ({
     ...state,

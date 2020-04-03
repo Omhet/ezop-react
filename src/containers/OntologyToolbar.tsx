@@ -2,13 +2,12 @@ import { connect } from 'react-redux';
 import { RootState } from '../redux/types';
 import OntologyToolbar from '../components/OntologyToolbar/OntologyToolbar';
 import { Dispatch } from 'redux';
-import { ExecutionStatus } from '../types';
 import { dictionaryFsa } from '../redux/modules/dictionary';
 import { ontologyFsa, buildOntology } from '../redux/modules/ontology';
 
 const mapState = (state: RootState) => {
   return {
-    status: 'idle' as ExecutionStatus
+    status: state.ontology.status
   };
 };
 
