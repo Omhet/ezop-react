@@ -6,7 +6,7 @@ import { ontologyFsa } from '../redux/modules/ontology';
 
 const mapState = (state: RootState) => {
   const {
-    ontology: { status, value, fontSize }
+    ontology: { status, value, fontSize, error }
   } = state;
 
   const isDraft = window.serverData.ontology.isDraft;
@@ -26,6 +26,7 @@ const mapState = (state: RootState) => {
     statusText,
     fontSize,
     value,
+    error,
     isReadOnly: !isDraft
   };
 };
