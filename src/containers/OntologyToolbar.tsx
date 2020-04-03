@@ -4,7 +4,7 @@ import OntologyToolbar from '../components/OntologyToolbar/OntologyToolbar';
 import { Dispatch } from 'redux';
 import { ExecutionStatus } from '../types';
 import { dictionaryFsa } from '../redux/modules/dictionary';
-import { ontologyFsa } from '../redux/modules/ontology';
+import { ontologyFsa, buildOntology } from '../redux/modules/ontology';
 
 const mapState = (state: RootState) => {
   return {
@@ -14,7 +14,7 @@ const mapState = (state: RootState) => {
 
 const mapDispatch = (dispatch: Dispatch) => ({
   onBuildClick: () => {
-    console.log('Build');
+    dispatch(buildOntology());
   },
   onDictionaryClick: () => {
     dispatch(dictionaryFsa.openDictionary());

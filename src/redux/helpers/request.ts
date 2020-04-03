@@ -70,3 +70,25 @@ export async function requestDictionaryItemDescription(itemName: string) {
     console.error(err);
   }
 }
+
+export async function requestBuildOntology(text: string) {
+  const formData = new FormData();
+  formData.append('menu_item', 'CC_build_all');
+  formData.append('curcnpt_text', text);
+  formData.append('curcnpt_id', window.serverData.curcnpt_id);
+
+  const params = new URLSearchParams();
+  for (const pair of formData) {
+    params.append(pair[0], pair[1] as string);
+  }
+
+  try {
+    const res = await fetch(`/ezop/exe/editor.exe`, {
+      method: 'POST',
+      body: params
+    });
+    return parseResponseWithDivivder(res);
+  } catch (err) {
+    console.error(err);
+  }
+}
