@@ -6,8 +6,14 @@ import { dictionaryFsa } from '../redux/modules/dictionary';
 import { ontologyFsa, buildOntology } from '../redux/modules/ontology';
 
 const mapState = (state: RootState) => {
+  const {
+    ontology: { status }
+  } = state;
+  const { isDraft } = window.serverData.ontology;
+
   return {
-    status: state.ontology.status
+    status,
+    isOntologyReadOnly: !isDraft
   };
 };
 
@@ -21,8 +27,8 @@ const mapDispatch = (dispatch: Dispatch) => ({
   onSaveClick: () => {
     console.log('Save');
   },
-  onUploadClick: () => {
-    console.log('Upload');
+  onPublishClick: () => {
+    console.log('Publish');
   },
   onZoomInClick: () => {
     dispatch(ontologyFsa.increaseFont());

@@ -9,7 +9,7 @@ const mapState = (state: RootState) => {
     ontology: { status, value, fontSize, error }
   } = state;
 
-  const isDraft = window.serverData.ontology.isDraft;
+  const { isDraft } = window.serverData.ontology;
 
   let statusText;
   if (status === 'error') {

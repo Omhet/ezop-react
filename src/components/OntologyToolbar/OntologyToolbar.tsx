@@ -2,16 +2,17 @@ import React, { FC } from 'react';
 import BuildIcon from '../../icons/Build.svg';
 import DictionaryIcon from '../../icons/Book.svg';
 import SaveIcon from '../../icons/Save.svg';
-import UploadIcon from '../../icons/Upload.svg';
+import PublishIcon from '../../icons/Upload.svg';
 import ZoomInIcon from '../../icons/ZoomIn.svg';
 import ZoomOutIcon from '../../icons/ZoomOut.svg';
 import Toolbar, { ToolbarProps } from '../Toolbar/Toolbar';
 import Button from '../Button/Button';
 
 interface Props extends Pick<ToolbarProps, 'status'> {
+  isOntologyReadOnly: boolean;
   onDictionaryClick(): void;
   onSaveClick(): void;
-  onUploadClick(): void;
+  onPublishClick(): void;
   onZoomInClick(): void;
   onZoomOutClick(): void;
   onBuildClick(): void;
@@ -19,9 +20,10 @@ interface Props extends Pick<ToolbarProps, 'status'> {
 
 const OntologyToolbar: FC<Props> = ({
   status,
+  isOntologyReadOnly,
   onDictionaryClick,
   onSaveClick,
-  onUploadClick,
+  onPublishClick,
   onZoomInClick,
   onZoomOutClick,
   onBuildClick
@@ -36,16 +38,20 @@ const OntologyToolbar: FC<Props> = ({
     <Button onClick={onDictionaryClick} key="dictionary">
       <DictionaryIcon width={24} />
     </Button>,
-    <Button onClick={onSaveClick} key="save">
+    <Button isDisabled={isOntologyReadOnly} onClick={onSaveClick} key="save">
       <SaveIcon width={24} />
     </Button>,
-    <Button onClick={onUploadClick} key="upload">
-      <UploadIcon width={26} />
+    <Button
+      isDisabled={isOntologyReadOnly}
+      onClick={onPublishClick}
+      key="publish"
+    >
+      <PublishIcon width={26} />
     </Button>
   ];
 
   const mainButton = (
-    <Button onClick={onBuildClick}>
+    <Button isDisabled={isOntologyReadOnly} onClick={onBuildClick}>
       <BuildIcon width={43} />
     </Button>
   );
