@@ -1,8 +1,8 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
-import { Query } from '../types';
-import { requestBuildOntology } from '../helpers/request';
+import { Query, RootState } from '../types';
+import { requestBuildOntology, requestSaveOntology } from '../helpers/request';
 import { ExecutionStatus } from '../../types';
 
 const fsa = {
@@ -60,4 +60,13 @@ export const buildOntology: ThunkAction = () => async (dispatch, getState) => {
   console.log({ error, logs, status });
 
   dispatch(fsa.setOntology({ error, logs, status }));
+};
+
+export const saveOntology: ThunkAction = () => async (dispatch, getState) => {
+  const {
+    ontology: { value }
+  }: RootState = getState();
+  const { title } = window.serverData.ontology;
+
+  await requestSaveOntology(value, title);
 };

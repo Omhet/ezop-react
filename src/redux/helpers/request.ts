@@ -92,3 +92,26 @@ export async function requestBuildOntology(text: string) {
     console.error(err);
   }
 }
+
+export async function requestSaveOntology(text: string, title: string) {
+  const formData = new FormData();
+  formData.append('menu_item', 'SaveDraft');
+  formData.append('curcnpt_text', text);
+  formData.append('curcnpt_name', title);
+  formData.append('curcnpt_id', window.serverData.curcnpt_id);
+
+  const params = new URLSearchParams();
+  for (const pair of formData) {
+    params.append(pair[0], pair[1] as string);
+  }
+
+  try {
+    const res = await fetch(`../proc_data.php`, {
+      method: 'POST',
+      body: params
+    });
+    return res.text();
+  } catch (err) {
+    console.error(err);
+  }
+}
