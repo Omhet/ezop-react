@@ -13,6 +13,7 @@ const fsa = {
   increaseFont: createAction('ONTOLOGY/INCREASE_FONT')<undefined>(),
   decreaseFont: createAction('ONTOLOGY/DECREASE_FONT')<undefined>(),
   setValue: createAction('ONTOLOGY/SET_VALUE')<string>(),
+  setName: createAction('ONTOLOGY/SET_NAME')<string>(),
   setStatus: createAction('ONTOLOGY/SET_STATUS')<ExecutionStatus>(),
   setStatusText: createAction('ONTOLOGY/SET_STATUS_TEXT')<string>(),
   setOntology: createAction('ONTOLOGY/SET_ONTOLOGY')<Omit<Query, 'value'>>()
@@ -22,6 +23,7 @@ export const ontologyFsa = fsa;
 interface State extends Query {
   fontSize: number;
   statusText: string;
+  name: string;
 }
 
 const initialState: State = {
@@ -30,6 +32,7 @@ const initialState: State = {
   error: '',
   logs: '',
   status: 'idle',
+  name: window.serverData.ontology.title,
   statusText: window.serverData.ontology.isDraft ? 'Черновик' : ''
 };
 
@@ -45,6 +48,10 @@ export const ontologyReducer = withState(initialState)
   .add(fsa.setValue, (state, { payload }) => ({
     ...state,
     value: payload
+  }))
+  .add(fsa.setName, (state, { payload }) => ({
+    ...state,
+    name: payload
   }))
   .add(fsa.setStatus, (state, { payload }) => ({
     ...state,
@@ -86,13 +93,12 @@ export const buildOntology: ThunkAction = () => async (dispatch, getState) => {
 
 export const saveOntology: ThunkAction = () => async (dispatch, getState) => {
   const {
-    ontology: { value }
+    ontology: { value, name }
   }: RootState = getState();
-  const { title } = window.serverData.ontology;
 
-  const res = await requestGetNewVersion(title);
+  const res = await requestGetNewVersion(name);
   if (res !== undefined && res.includes('Измените имя')) {
-    const logs = `Онтология с именем ${title} уже существует. Пожалуйста, измените имя.`;
+    const logs = `Онтология с именем ${name} уже существует. Пожалуйста, измените имя.`;
     dispatch(fsa.setOntology({ error: '', logs, status: 'error' }));
     dispatch(fsa.setStatusText('Ошибка сохранения'));
     return;
@@ -100,7 +106,7 @@ export const saveOntology: ThunkAction = () => async (dispatch, getState) => {
   dispatch(ontologyFsa.setStatus('idle'));
   dispatch(ontologyFsa.setStatusText('Черновик'));
   try {
-    await requestSaveOntology(value, title);
+    await requestSaveOntology(value, name);
     dispatch(ontologyFsa.setStatus('success'));
     dispatch(ontologyFsa.setStatusText('Черновик успешно сохранен'));
   } catch {

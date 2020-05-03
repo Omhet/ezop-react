@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import classnames from 'classnames';
 import ExpandIcon from '../../icons/Expand.svg';
 
@@ -10,8 +10,10 @@ import { ExecutionStatus } from '../../types';
 interface Props extends EditorProps {
   name: string;
   status: ExecutionStatus;
+  canEditName: boolean;
   statusText?: string;
   onExpandClick?(): void;
+  onNameEdit(name: string): void;
 }
 
 const InputBox: FC<Props> = ({
@@ -23,12 +25,26 @@ const InputBox: FC<Props> = ({
   value,
   error,
   isReadOnly,
-  onExpandClick
+  canEditName,
+  onExpandClick,
+  onNameEdit
 }) => {
+  const handleNameEdit = (e: ChangeEvent<HTMLInputElement>) => {
+    onNameEdit(e.target.value);
+  };
   return (
     <div className={styles.main}>
       <div className={classnames(styles.header, styles[status])}>
-        <span className={styles.name}>{name}</span>
+        {canEditName ? (
+          <input
+            onChange={handleNameEdit}
+            type="text"
+            value={name}
+            className={styles.nameEdit}
+          />
+        ) : (
+          <span className={styles.name}>{name}</span>
+        )}
         <div className={styles.rightBlock}>
           {statusText !== undefined && <span>{statusText}</span>}
           <Button className={styles.expandIcon} onClick={onExpandClick}>

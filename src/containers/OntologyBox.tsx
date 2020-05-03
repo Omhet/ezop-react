@@ -6,19 +6,20 @@ import { ontologyFsa } from '../redux/modules/ontology';
 
 const mapState = (state: RootState) => {
   const {
-    ontology: { status, statusText, value, fontSize, error }
+    ontology: { name, status, statusText, value, fontSize, error }
   } = state;
 
   const { isDraft } = window.serverData.ontology;
 
   return {
-    name: window.serverData.ontology.title,
+    name,
     status,
     statusText,
     fontSize,
     value,
     error,
-    isReadOnly: !isDraft
+    isReadOnly: !isDraft,
+    canEditName: isDraft
   };
 };
 
@@ -31,6 +32,9 @@ const mapDispatch = (dispatch: Dispatch) => ({
     dispatch(ontologyFsa.setValue(value));
     dispatch(ontologyFsa.setStatus('idle'));
     dispatch(ontologyFsa.setStatusText('Черновик'));
+  },
+  onNameEdit: (name: string) => {
+    dispatch(ontologyFsa.setName(name));
   }
 });
 

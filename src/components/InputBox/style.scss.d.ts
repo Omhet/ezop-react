@@ -6,6 +6,7 @@ declare namespace StyleScssModule {
     idle: string;
     main: string;
     name: string;
+    nameEdit: string;
     rightBlock: string;
     success: string;
   }
