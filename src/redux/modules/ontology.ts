@@ -2,7 +2,11 @@ import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
 import { Query, RootState } from '../types';
-import { requestBuildOntology, requestSaveOntology } from '../helpers/request';
+import {
+  requestBuildOntology,
+  requestSaveOntology,
+  requestGetNewVersion
+} from '../helpers/request';
 import { ExecutionStatus } from '../../types';
 
 const fsa = {
@@ -10,12 +14,14 @@ const fsa = {
   decreaseFont: createAction('ONTOLOGY/DECREASE_FONT')<undefined>(),
   setValue: createAction('ONTOLOGY/SET_VALUE')<string>(),
   setStatus: createAction('ONTOLOGY/SET_STATUS')<ExecutionStatus>(),
+  setStatusText: createAction('ONTOLOGY/SET_STATUS_TEXT')<string>(),
   setOntology: createAction('ONTOLOGY/SET_ONTOLOGY')<Omit<Query, 'value'>>()
 };
 export const ontologyFsa = fsa;
 
 interface State extends Query {
   fontSize: number;
+  statusText: string;
 }
 
 const initialState: State = {
@@ -23,7 +29,8 @@ const initialState: State = {
   value: window.serverData.ontology.text,
   error: '',
   logs: '',
-  status: 'idle'
+  status: 'idle',
+  statusText: window.serverData.ontology.isDraft ? 'Черновик' : ''
 };
 
 export const ontologyReducer = withState(initialState)
@@ -42,6 +49,10 @@ export const ontologyReducer = withState(initialState)
   .add(fsa.setStatus, (state, { payload }) => ({
     ...state,
     status: payload
+  }))
+  .add(fsa.setStatusText, (state, { payload }) => ({
+    ...state,
+    statusText: payload
   }))
   .add(fsa.setOntology, (state, { payload: { error, logs, status } }) => ({
     ...state,
@@ -62,7 +73,15 @@ export const buildOntology: ThunkAction = () => async (dispatch, getState) => {
   const status = error ? 'error' : 'success';
   console.log({ error, logs, status });
 
+  let statusText;
+  if (status === 'error') {
+    statusText = 'Ошибка построения';
+  } else if (status === 'success') {
+    statusText = 'Онтология построена';
+  }
+
   dispatch(fsa.setOntology({ error, logs, status }));
+  dispatch(fsa.setStatusText(statusText));
 };
 
 export const saveOntology: ThunkAction = () => async (dispatch, getState) => {
@@ -71,5 +90,12 @@ export const saveOntology: ThunkAction = () => async (dispatch, getState) => {
   }: RootState = getState();
   const { title } = window.serverData.ontology;
 
+  const res = await requestGetNewVersion(title);
+  if (res !== undefined && res.includes('Измените имя')) {
+    const logs = `Онтология с именем ${title} уже существует. Пожалуйста, измените имя.`;
+    dispatch(fsa.setOntology({ error: '', logs, status: 'error' }));
+    dispatch(fsa.setStatusText('Ошибка сохранения'));
+    return;
+  }
   await requestSaveOntology(value, title);
 };
