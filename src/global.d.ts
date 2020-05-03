@@ -10,6 +10,8 @@ interface Ontology {
 
 interface ServerData {
   curcnpt_id: string;
+  env_id: string;
+  group_id: string;
   ontology: Ontology;
   templates: string[];
 }

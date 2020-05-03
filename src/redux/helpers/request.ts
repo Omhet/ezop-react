@@ -99,6 +99,7 @@ export async function requestSaveOntology(text: string, title: string) {
   formData.append('curcnpt_text', text);
   formData.append('curcnpt_name', title);
   formData.append('curcnpt_id', window.serverData.curcnpt_id);
+  formData.append('env_id', window.serverData.env_id);
 
   const params = new URLSearchParams();
   for (const pair of formData) {
@@ -106,10 +107,13 @@ export async function requestSaveOntology(text: string, title: string) {
   }
 
   try {
-    const res = await fetch(`../proc_data.php`, {
-      method: 'POST',
-      body: params
-    });
+    const res = await fetch(
+      `../proc_data.php?group=${window.serverData.group_id}`,
+      {
+        method: 'POST',
+        body: params
+      }
+    );
     return res.text();
   } catch (err) {
     console.error(err);
