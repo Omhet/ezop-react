@@ -119,27 +119,3 @@ export async function requestSaveOntology(text: string, title: string) {
     console.error(err);
   }
 }
-
-export async function requestGetNewVersion(title: string) {
-  const formData = new FormData();
-  formData.append('menu_item', 'CC_save');
-  formData.append('inset', 'CC');
-  formData.append('curcnpt_name', title);
-  formData.append('env_id', window.serverData.env_id);
-
-  const params = new URLSearchParams();
-  for (const pair of formData) {
-    params.append(pair[0], pair[1] as string);
-  }
-
-  try {
-    const res = await fetch(`/ezop/exe/editor.exe`, {
-      method: 'POST',
-      body: params
-    });
-    const results = await parseResponseWithDivivder(res);
-    return results.join('');
-  } catch (err) {
-    console.error(err);
-  }
-}

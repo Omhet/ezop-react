@@ -2,11 +2,7 @@ import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { changeFontSize } from '../helpers/misc';
 import { Query, RootState } from '../types';
-import {
-  requestBuildOntology,
-  requestSaveOntology,
-  requestGetNewVersion
-} from '../helpers/request';
+import { requestBuildOntology, requestSaveOntology } from '../helpers/request';
 import { ExecutionStatus } from '../../types';
 
 const fsa = {
@@ -96,13 +92,6 @@ export const saveOntology: ThunkAction = () => async (dispatch, getState) => {
     ontology: { value, name }
   }: RootState = getState();
 
-  const res = await requestGetNewVersion(name);
-  if (res !== undefined && res.includes('Измените имя')) {
-    const logs = `Онтология с именем ${name} уже существует. Пожалуйста, измените имя.`;
-    dispatch(fsa.setOntology({ error: '', logs, status: 'error' }));
-    dispatch(fsa.setStatusText('Ошибка сохранения'));
-    return;
-  }
   dispatch(ontologyFsa.setStatus('idle'));
   dispatch(ontologyFsa.setStatusText('Черновик'));
   try {
