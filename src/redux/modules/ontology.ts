@@ -97,5 +97,14 @@ export const saveOntology: ThunkAction = () => async (dispatch, getState) => {
     dispatch(fsa.setStatusText('Ошибка сохранения'));
     return;
   }
-  await requestSaveOntology(value, title);
+  dispatch(ontologyFsa.setStatus('idle'));
+  dispatch(ontologyFsa.setStatusText('Черновик'));
+  try {
+    await requestSaveOntology(value, title);
+    dispatch(ontologyFsa.setStatus('success'));
+    dispatch(ontologyFsa.setStatusText('Черновик успешно сохранен'));
+  } catch {
+    dispatch(ontologyFsa.setStatus('error'));
+    dispatch(fsa.setStatusText('Ошибка сохранения'));
+  }
 };
