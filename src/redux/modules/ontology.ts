@@ -55,7 +55,10 @@ export const buildOntology: ThunkAction = () => async (dispatch, getState) => {
   console.log({ ontology });
 
   const [rawError, logs] = (await requestBuildOntology(ontology.value)) ?? [];
-  const error = rawError.trim();
+  const error = rawError
+    .trim()
+    .replace(/\[\d+\]/g, '')
+    .trim();
   const status = error ? 'error' : 'success';
   console.log({ error, logs, status });
 
