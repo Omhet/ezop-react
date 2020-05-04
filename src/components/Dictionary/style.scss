@@ -18,6 +18,10 @@
     white-space: normal;
   }
 
+  & > option:checked {
+      background: linear-gradient($mainAccent, $mainAccent);
+  }
+
   & > :first-child {
     padding-top: 12px;
   }
