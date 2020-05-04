@@ -33,6 +33,14 @@
 
 .nameEdit {
   padding: 2px 8px;
+  color: $auxColor;
+  font-weight: bold;
+  border: 0;
+  background: transparent;
+}
+
+.editIcon {
+  fill: $auxColor;
 }
 
 .rightBlock {

@@ -1,6 +1,7 @@
 import React, { FC, ChangeEvent } from 'react';
 import classnames from 'classnames';
 import ExpandIcon from '../../icons/Expand.svg';
+import EditIcon from '../../icons/Pencil.svg';
 
 import styles from './style.scss';
 import Editor, { EditorProps } from '../Editor/Editor';
@@ -36,12 +37,15 @@ const InputBox: FC<Props> = ({
     <div className={styles.main}>
       <div className={classnames(styles.header, styles[status])}>
         {canEditName ? (
-          <input
-            onChange={handleNameEdit}
-            type="text"
-            value={name}
-            className={styles.nameEdit}
-          />
+          <>
+            <EditIcon width={18} height={18} className={styles.editIcon} />
+            <input
+              onChange={handleNameEdit}
+              type="text"
+              value={name}
+              className={styles.nameEdit}
+            />
+          </>
         ) : (
           <span className={styles.name}>{name}</span>
         )}

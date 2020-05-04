@@ -1,5 +1,6 @@
 declare namespace StyleScssModule {
   export interface IStyleScss {
+    editIcon: string;
     error: string;
     expandIcon: string;
     header: string;
