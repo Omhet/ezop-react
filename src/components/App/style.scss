@@ -16,6 +16,7 @@
 .dictionary {
     max-width: 370px;
     margin-right: 12px;
+    flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -23,7 +24,7 @@
 .blockLayout {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
 
     & > :last-child {
         margin-top: 12px;
