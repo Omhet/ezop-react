@@ -1,9 +1,9 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
-import { changeFontSize } from '../helpers/misc';
+import { changeFontSize } from '../../utils/misc';
 import { ThunkAction } from 'redux-thunk';
 import { RootState, Query } from '../types';
-import { requestRunCommand } from '../helpers/request';
+import { requestRunCommand } from '../../utils/request';
 import { ExecutionStatus } from '../../types';
 
 const fsa = {

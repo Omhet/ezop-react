@@ -1,8 +1,8 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
-import { changeFontSize } from '../helpers/misc';
+import { changeFontSize } from '../../utils/misc';
 import { Query, RootState } from '../types';
-import { requestBuildOntology, requestSaveOntology } from '../helpers/request';
+import { requestBuildOntology, requestSaveOntology } from '../../utils/request';
 import { ExecutionStatus } from '../../types';
 
 const fsa = {

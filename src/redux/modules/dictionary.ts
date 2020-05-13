@@ -1,7 +1,7 @@
 import { createAction } from 'typesafe-actions';
 import { withState } from '../helpers/typesafe-reducer';
 import { ThunkAction } from 'redux-thunk';
-import { requestDictionaryItemDescription } from '../helpers/request';
+import { requestDictionaryItemDescription } from '../../utils/request';
 
 export const fsa = {
   openDictionary: createAction('DICTIONARY/OPEN')<undefined>(),
