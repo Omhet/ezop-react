@@ -17,9 +17,6 @@ const mapDispatch = (dispatch: Dispatch) => ({
   onDeleteClick: () => {
     dispatch(queryFsa.clearQuery());
   },
-  onDownloadClick: () => {
-    console.log('Download');
-  },
   onZoomInClick: () => {
     dispatch(queryFsa.increaseFont());
   },
