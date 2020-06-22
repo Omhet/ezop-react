@@ -29,19 +29,37 @@ const OntologyToolbar: FC<Props> = ({
   onBuildClick
 }) => {
   const buttons = [
-    <Button onClick={onZoomInClick} key="zoom-in">
+    <Button
+      title="Увеличить шрифт в окне онтологии"
+      onClick={onZoomInClick}
+      key="zoom-in"
+    >
       <ZoomInIcon width={24} />
     </Button>,
-    <Button onClick={onZoomOutClick} key="zoom-out">
+    <Button
+      title="Уменьшить шрифт в окне онтологии"
+      onClick={onZoomOutClick}
+      key="zoom-out"
+    >
       <ZoomOutIcon width={24} />
     </Button>,
-    <Button onClick={onDictionaryClick} key="dictionary">
+    <Button
+      title="Открыть словарь шаблонов"
+      onClick={onDictionaryClick}
+      key="dictionary"
+    >
       <DictionaryIcon width={24} />
     </Button>,
-    <Button isDisabled={isOntologyReadOnly} onClick={onSaveClick} key="save">
+    <Button
+      title="Сохранить черновик"
+      isDisabled={isOntologyReadOnly}
+      onClick={onSaveClick}
+      key="save"
+    >
       <SaveIcon width={24} />
     </Button>,
     <Button
+      title="Опубликовать онтологию"
       isDisabled={isOntologyReadOnly}
       onClick={onPublishClick}
       key="publish"
@@ -51,7 +69,11 @@ const OntologyToolbar: FC<Props> = ({
   ];
 
   const mainButton = (
-    <Button isDisabled={isOntologyReadOnly} onClick={onBuildClick}>
+    <Button
+      title="Построить онтологию"
+      isDisabled={isOntologyReadOnly}
+      onClick={onBuildClick}
+    >
       <BuildIcon width={43} />
     </Button>
   );

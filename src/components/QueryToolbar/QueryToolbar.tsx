@@ -21,19 +21,27 @@ const QueryToolbar: FC<Props> = ({
   onRunClick
 }) => {
   const buttons = [
-    <Button onClick={onZoomInClick} key="zoom-in">
+    <Button
+      title="Увеличить шрифт в окне запроса"
+      onClick={onZoomInClick}
+      key="zoom-in"
+    >
       <ZoomInIcon width={24} />
     </Button>,
-    <Button onClick={onZoomOutClick} key="zoom-out">
+    <Button
+      title="Уменьшить шрифт в окне запроса"
+      onClick={onZoomOutClick}
+      key="zoom-out"
+    >
       <ZoomOutIcon width={24} />
     </Button>,
-    <Button onClick={onDeleteClick} key="delete">
+    <Button title="Очистить окно запроса" onClick={onDeleteClick} key="delete">
       <DeleteIcon width={28} />
     </Button>
   ];
 
   const mainButton = (
-    <Button onClick={onRunClick}>
+    <Button title="Выполнить запрос" onClick={onRunClick}>
       <RunIcon width={43} />
     </Button>
   );
